@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  font-family: sans-serif
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.card-list {
+  max-width: 50%;
+  float: left;
+}
+
+.card-list__item:hover, .card-list__item:active {
+  background-color: lightgray;
+}
+
+.card-image {
+  right: 0;
+  position: fixed;
+  max-width: 50%;
+}
+

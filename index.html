@@ -3,6 +3,7 @@
     <script src="https://fb.me/react-0.13.2.js"></script>
     <script src="https://fb.me/JSXTransformer-0.13.2.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/main.css"> 
   </head>
   <body>
     <h1>
@@ -17,7 +18,7 @@
     <script type="text/jsx">
       var CardImage = React.createClass({
         render: function() {
-          return <img src={"images/cards/"+this.props.name+".jpg"}/>
+          return <img className="card-image" src={"images/cards/"+this.props.name+".jpg"}/>
         }
       });
     </script>
@@ -31,10 +32,11 @@
         },
         getInitialState: function() {
           return {
-            currentCard: "Forest [1]"
+            currentCard: "War Flare"
           };
         },
         render: function() {
+          
           var _this = this;
           function makeCard(card) { 
             function cardClicked() {
@@ -43,10 +45,14 @@
                 currentCard: card.name
               });
             }
-            return <li onClick={cardClicked}>{card.name}</li>
+            return <li className="card-list__item" onClick={cardClicked}>{card.name}</li>
+          }
+          function notLand(card) {
+            var lands = ["Forest", "Swamp", "Mountain", "Island", "Plains"];
+            return -1 === lands.indexOf(card.name);
           }
           return <div>
-            <ul style={{width: '33%'}}>{this.props.cards.map(makeCard)}</ul>
+            <ul className="card-list" >{this.props.cards.filter(notLand).map(makeCard)}</ul>
             <CardImage name={this.state.currentCard}/>
           </div>
         }
